@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sudoku</title>
+    <link rel="stylesheet" href="../css/default.css">
+    <style>
+        #sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 50px);
+            grid-template-rows: repeat(9, 50px);
+            border: 2px solid black;
+            width: 450px;
+            height: 450px;
+        }
+
+        .cell {
+            width: 49px;
+            height: 49px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: 1px solid black;
+        }
+
+        .cell input {
+            width: 90%;
+            height: 90%;
+            text-align: center;
+            border: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .cell:nth-child(3n) {
+            border-right: 2px solid black;
+        }
+
+        .cell:nth-child(n+19):nth-child(-n+27),
+        .cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Lame Sudoku</h1>
+        <div id="sudoku-grid"></div>
+        <button onclick="generateSudoku()">Generate New Puzzle</button>
+    </div>
+    <a href="../index.html" class="home-button">home</a>
+    <script>
+        function generateSudoku() {
+            const grid = createEmptyGrid();
+            fillGrid(grid);
+            removeCells(grid, 40);
+            renderSudoku(grid);
+        }
+
+        function createEmptyGrid() {
+            return Array(9).fill(0).map(() => Array(9).fill(0));
+        }
+
+        function fillGrid(grid) {
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    grid[row][col] = (row * 3 + Math.floor(row / 3) + col) % 9 + 1;
+                }
+            }
+        }
+
+        function removeCells(grid, count) {
+            let removed = 0;
+            while (removed < count) {
+                const row = Math.floor(Math.random() * 9);
+                const col = Math.floor(Math.random() * 9);
+                if (grid[row][col] !== 0) {
+                    grid[row][col] = 0;
+                    removed++;
+                }
+            }
+        }
+
+        function renderSudoku(grid) {
+            const sudokuGrid = document.getElementById('sudoku-grid');
+            sudokuGrid.innerHTML = ''; // Clear previous grid
+
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    if (grid[row][col] !== 0) {
+                        cell.textContent = grid[row][col];
+                    } else {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = '1';
+                        cell.appendChild(input);
+                    }
+                    sudokuGrid.appendChild(cell);
+                }
+            }
+        }
+
+        generateSudoku()
+    </script>
+</body>
+
+</html>
