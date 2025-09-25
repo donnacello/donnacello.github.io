@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>I am fortunate</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=home" />
+	<link rel="stylesheet" href="../css/default.css">
+	<style>
+		body {
+			background-color: #ffeead;
+			font-family: "Montserrat", sans-serif;
+		}
+
+		button {
+			font-family: "Montserrat", sans-serif;
+			font-weight: 500;
+			font-size: medium;
+			background-color: #ff6f69;
+			color: white;
+		}
+
+		.home-button {
+			color: #88d8b0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="paper">
+		<h1>I am fortunate</h1>
+		<h3 id="content">but I am currently not&nbsp;feeling&nbsp;good&nbsp;about:</h2>
+			<div class="button-group">
+				<button onclick="getMsg(workText)" class="main-button">work</button>
+				<button onclick="getMsg(houseText)" class="main-button">house</button>
+				<button onclick="getMsg(myselfText)" class="main-button">myself</button>
+			</div>
+	</div>
+	<a href="../index.html" class="home-button"><span class="material-symbols-outlined">home</span></a>
+
+</body>
+
+<script>
+	const workText = [
+		"I have a job that provides for me.",
+		"I am learning new skills and growing.",
+		"My work allows me to contribute to something bigger.",
+		"I get to meet skilled people.",
+		"I get to work on interesting things",
+		"I am paid well.",
+		"I can work from home!"
+	];
+
+	const houseText = [
+		"I have a roof over my head.",
+		"I have a safe and warm place to call home.",
+		"I am surrounded by my belongings and memories.",
+		"I have a space for all the things I enjoy!",
+		"I am in a nice location!",
+		"I have everything I need."
+	];
+
+	const myselfText = [
+		"I am capable and resilient.",
+		"I have faced challenges before and can overcome them.",
+		"I am a kind and worthy person.",
+		"I am surrounded by people I love.",
+		"I have people that care for me.",
+		"My life is full of comforts that make me happy."
+	];
+
+	function getMsg(messages) {
+		const randomIndex = Math.floor(Math.random() * messages.length);
+		content.textContent = messages[randomIndex];
+	}
+</script>
+
+</html>
