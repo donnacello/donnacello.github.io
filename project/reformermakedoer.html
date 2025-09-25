@@ -26,19 +26,25 @@
 <body>
 	<div class="paper">
 		<h1>Reformer Make-Doer</h1>
-		<p>buttons don't work :D</p>
+		<p id="msg">still work in progress :D</p>
 		<div class="button-group">
-			<button>arms</button>
-			<button>core</button>
-			<button>legs</button>
+			<button onclick="displayMsg()">arms</button>
+			<button onclick="updateImg('core')">core</button>
+			<button onclick="updateImg('legs')">legs</button>
 		</div>
-		<img src="../images/reformer/pilates-core-0.png">
+		<img id="exercise" src="../images/reformer/pilates-welcome.png">
 	</div>
 	<a href="../index.html" class="home-button">home</a>
 </body>
 
 <script>
+	function updateImg(focus) {
+		document.getElementById("exercise").setAttribute("src", `../images/reformer/pilates-${focus}-0.png`);
+	}
 
+	function displayMsg() {
+		document.getElementById("msg").textContent = "no drawing for arms yet :(";
+	}
 </script>
 
 </html>
